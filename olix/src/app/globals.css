@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.rbc-calendar {
+  font-size: 19px;
+  color: #838383;
+}
+
+.rbc-event {
+  font-size: 12px;
+  padding: 5px;
+  text-align: center;
+  color: white;
+}
+
+.rbc-event {
+  text-align: center;
+  font-size: 0.875rem; /* Tailwind text-sm */
+  line-height: 1rem;
+  color: #fff; /* Tailwind text-white */
+  font-weight: 500; /* Tailwind font-medium */
+  padding: 4px;
+  border-radius: 0.375rem; /* Tailwind rounded-md */
+}
+.rbc-toolbar {
+  background-color: #f3f4f6; /* Tailwind bg-gray-100 */
+  padding: 8px;
+  border-radius: 0.5rem; /* Tailwind rounded-lg */
+}
+.rbc-month-view {
+  background-color: #ffffff; /* Tailwind bg-white */
+  border: 1px solid #e5e7eb; /* Tailwind border-gray-200 */
+  border-radius: 0.5rem; /* Tailwind rounded-lg */
+}
