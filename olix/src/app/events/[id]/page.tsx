@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Navigation from "@/app/components/navigation";
 import { useSession } from 'next-auth/react'; // To get the logged-in user's session
+import ReadOnlyRichText from "../../components/ShowText";
 
 interface Participant {
     id: number;
@@ -120,7 +121,7 @@ const EventPage = () => {
                     <div className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Opis</label>
-                            <p className="mt-1 text-gray-700">{event.description || 'No description provided'}</p>
+                            <ReadOnlyRichText rawContent={event.description || ""} />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Etykieta</label>

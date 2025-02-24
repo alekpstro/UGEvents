@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Navigation from "../../components/navigation";
+import ReadOnlyRichText from "../../components/ShowText";
 
 interface Event {
     id: number;
@@ -141,10 +142,12 @@ export default function ZarzadzanieEvents() {
                         events.map((event) => (
                             <div key={event.id} className="text-customColorText p-4 bg-white shadow-md rounded-lg">
                                 <h2 className="text-lg font-semibold">{event.title}</h2>
-                                <p className="text-sm">{event.description}</p>
-                                <p className="text-sm text-gray-600 mt-2">
-                                    {new Date(event.date).toLocaleString()}
-                                </p>
+                                <div className="mt-2 text-sm line-clamp-2">
+                                    <ReadOnlyRichText rawContent={event.description || ""}/>
+                                </div>
+                                <p className="mt-2 text-sm text-black">Lokalizacja: {event.location || 'Not specified'}</p>
+                                <p className="text-sm text-black">Data: {new Date(event.date).toLocaleDateString()}</p>
+
                                 <div className="flex flex-wrap gap-2 mt-2">
                                     {event.labels.map((label) => (
                                         <span

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Navigation from "../../../components/navigation";
-
+import Toolbar from "../../../components/Toolbar";
 
 const LABELS = [
     { name: "Bankowość i Finanse", color: "bg-blue-500" },
@@ -29,7 +29,7 @@ export default function CreateEvent() {
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
     const [location] = useState('Wydział Zarządzania');
-    const [selectedLabels, setSelectedLabels] = useState<string[]>([]); // Labels as string array
+    const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -53,9 +53,7 @@ export default function CreateEvent() {
 
     const toggleLabel = (label: string) => {
         setSelectedLabels(prev =>
-            prev.includes(label)
-                ? prev.filter(item => item !== label)
-                : [...prev, label]
+            prev.includes(label) ? prev.filter(item => item !== label) : [...prev, label]
         );
     };
 
@@ -78,7 +76,7 @@ export default function CreateEvent() {
                     description,
                     date,
                     location,
-                    labels: selectedLabels, // Pass selected labels as an array
+                    labels: selectedLabels,
                     creatorId: session.user.id,
                 }),
             });
@@ -95,12 +93,16 @@ export default function CreateEvent() {
             setDescription('');
             setDate('');
             setSelectedLabels([]);
-            router.push('/events/zarzadzanie'); // Redirect after success
+            router.push('/events/zarzadzanie');
         } catch {
             setError('Nie udało się utworzyć wydarzenia. Proszę spróbuj ponownie');
         } finally {
             setIsLoading(false);
         }
+    };
+
+    const handleContentChange = (content: string) => {
+        setDescription(content);
     };
 
     return (
@@ -128,11 +130,7 @@ export default function CreateEvent() {
                             <label className="block text-sm font-medium text-customColorText">
                                 Opis
                             </label>
-                            <textarea
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                className="w-full mt-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600"
-                            />
+                            <Toolbar onContentChange={handleContentChange} initialContent={description} />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-customColorText">
@@ -165,17 +163,11 @@ export default function CreateEvent() {
                                 <div
                                     key={label.name}
                                     className={`flex items-center gap-2 px-3 py-2 border rounded-md cursor-pointer ${
-                                        selectedLabels.includes(label.name)
-                                            ? label.color
-                                            : "bg-gray-200"
+                                        selectedLabels.includes(label.name) ? label.color : "bg-gray-200"
                                     }`}
                                     onClick={() => toggleLabel(label.name)}
                                 >
-                                    <span
-                                        className={`${
-                                            selectedLabels.includes(label.name) ? 'text-white' : 'text-black'
-                                        }`}
-                                    >
+                                    <span className={selectedLabels.includes(label.name) ? 'text-white' : 'text-black'}>
                                         {label.name}
                                     </span>
                                 </div>
@@ -193,7 +185,6 @@ export default function CreateEvent() {
                             {isLoading ? 'Tworzenie...' : 'Utwórz wydarzenie'}
                         </button>
                     </form>
-                    {/* Show confetti on success */}
                     {success && <Confetti />}
                 </div>
             </div>

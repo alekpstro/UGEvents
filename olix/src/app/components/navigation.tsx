@@ -14,7 +14,7 @@ export default function Navigation() {
             <div className="container mx-auto flex justify-between items-center p-4">
                 {/* Logo */}
                 <Link href="/" className="text-xl font-bold">
-                    UG Events
+                    UG Wydarzenia
                 </Link>
 
                 {/* Hamburger Menu  */}
@@ -48,7 +48,7 @@ export default function Navigation() {
                         Zaloguj
                     </Link>
                     <Link href="/events/zarzadzanie/create" className="block px-4 py-2 hover:bg-blue-600 rounded-md lg:rounded-none">
-                        Create Event
+                        Utwórz Wydarzenie
                     </Link>
                     <Link href="/events/kalendarz" className="block px-4 py-2 hover:bg-blue-600 rounded-md lg:rounded-none">
                         Kalendarz
@@ -61,7 +61,7 @@ export default function Navigation() {
                         href="/profile"
                         className="block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 lg:inline-block lg:rounded-none"
                     >
-                        View Profile
+                        Twój profil
                     </Link>
                 </div>
 

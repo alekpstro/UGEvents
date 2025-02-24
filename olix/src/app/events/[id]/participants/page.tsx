@@ -48,7 +48,7 @@ export default function ParticipantsPage() {
         <div className="min-h-screen bg-gray-100 p-6">
             <Navigation/>
             <h1 className="pt-32 text-3xl font-bold mb-6 text-customColorText text-center">
-                Event Participants
+                Uczestnicy Wydarzenia
             </h1>
             {participants.length > 0 ? (
                 <ul className="bg-white shadow-lg rounded-lg p-4 max-w-md mx-auto">

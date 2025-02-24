@@ -5,6 +5,7 @@ import { useSession, signIn } from 'next-auth/react';
 import { useRouter, useParams } from 'next/navigation';
 import Navigation from '../../../components/navigation';
 import Confetti from "../../../components/Confetti";
+import Toolbar from '../../../components/Toolbar';
 
 const LABELS = [
     { name: "Bankowość i Finanse", color: "bg-blue-500" },
@@ -130,7 +131,9 @@ export default function EditEvent() {
             setIsLoading(false);
         }
     };
-
+    const handleContentChange = (content: string) => {
+        setDescription(content);
+    };
 
 
     return (
@@ -158,11 +161,7 @@ export default function EditEvent() {
                             <label className="block text-sm font-medium text-customColorText">
                                 Opis
                             </label>
-                            <textarea
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                className="w-full mt-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600"
-                            />
+                            {description && <Toolbar onContentChange={handleContentChange} initialContent={description}/>}
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-customColorText">
