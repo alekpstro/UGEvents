@@ -1,1 +1,1 @@
-# UGEvents
+# UG Wydarzenia
