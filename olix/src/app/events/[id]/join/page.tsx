@@ -11,36 +11,31 @@ export default function JoinEvent() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const { id } = useParams(); // Getting the dynamic parameter using useParams hook
+    const { id } = useParams();
 
     useEffect(() => {
         if (!id) {
             setError('Invalid event ID.');
         }
     }, [id]);
-
     const handleJoinEvent = async () => {
         if (!session) {
             setError('Aby dołączyć do wydarzenia musisz być zalogowany');
             return;
         }
-
         try {
             setLoading(true);
             setError('');
-            const res = await fetch(`/api/events/${id}/join`, { // Using the id from useParams() dynamically
+            const res = await fetch(`/api/events/${id}/join`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-
             if (!res.ok) {
                 const errorData = await res.json();
                 throw new Error(errorData.message || 'Failed to join event');
             }
-
-
             router.push(`/events/${id}/participants`);
         } catch (err) {
             setError((err as Error).message);

@@ -51,7 +51,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json(newEvent, { status: 201 });
     } catch (error) {
-        console.error('Error creating event:', error);
+        console.error('Error creating event:', error,  );
         return NextResponse.json({ error: 'nie udało się utworzyć wydarzenia' }, { status: 500 });
     }
 }
